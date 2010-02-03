@@ -67,7 +67,7 @@ class SQLiteDatabase(Database):
                 else:
                     first = False
                     
-                sql += ("SELECT NODE FROM LOOKUP OUTER JOIN TAGS ON TAG = TAGS.ID "
+                sql += ("SELECT NODE FROM LOOKUP LEFT OUTER JOIN TAGS ON TAG = TAGS.ID "
                         + " WHERE TAGS.DATA = ?")
                 params.append(cPickle.dumps(t))
             sql += ") EXCEPT SELECT DATA FROM TAGS WHERE "
@@ -164,7 +164,7 @@ class SQLiteDatabase(Database):
                     sql += " INTERSECT "
                 else:
                     first = False
-                sql += ("SELECT NODE FROM LOOKUP OUTER JOIN TAGS ON TAG = TAGS.ID"
+                sql += ("SELECT NODE FROM LOOKUP LEFT OUTER JOIN TAGS ON TAG = TAGS.ID"
                         + " WHERE TAGS.DATA = ? ")
 
                 params.append(cPickle.dumps(t))
